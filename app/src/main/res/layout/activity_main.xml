@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".feature.mainscreen.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarNoInset"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/colorPrimary"
+        tools:title="Toolbar title"
+        tools:titleTextColor="@color/white" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/originStationTextInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/material_baseline_grid_2x"
+        app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/originStationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/origin_station"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/destinationStationTextInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/material_baseline_grid_2x"
+        app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        app:layout_constraintTop_toBottomOf="@id/originStationTextInput">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/destinationStationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/destination_station"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/departureDateTextInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/material_baseline_grid_2x"
+        app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        app:layout_constraintTop_toBottomOf="@id/destinationStationTextInput">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/departureDateEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="@string/departure_date"
+            android:inputType="date"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/material_baseline_grid_2x"
+        app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        app:layout_constraintTop_toBottomOf="@id/departureDateTextInput">
+
+        <com.damiankwasniak.widget.StepperView
+            android:id="@+id/numberOfAdultsStepper"
+            android:layout_width="wrap_content"
+            app:label="@string/adults_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/numberOfTeensStepper"
+            android:layout_height="wrap_content"/>
+
+        <com.damiankwasniak.widget.StepperView
+            android:id="@+id/numberOfTeensStepper"
+            android:layout_width="wrap_content"
+            app:label="@string/teens_label"
+            app:layout_constraintStart_toEndOf="@id/numberOfAdultsStepper"
+            app:layout_constraintEnd_toStartOf="@id/numberOfChildrenStepper"
+            android:layout_height="wrap_content"/>
+
+        <com.damiankwasniak.widget.StepperView
+            android:id="@+id/numberOfChildrenStepper"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/numberOfTeensStepper"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:label="@string/children_label"
+            android:layout_height="wrap_content"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/leftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/material_baseline_grid_2x" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/material_baseline_grid_2x" />
+
+</android.support.constraint.ConstraintLayout>

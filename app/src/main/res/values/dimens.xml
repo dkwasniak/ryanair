@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="elevation_toolbar">@dimen/material_elevation_app_bar</dimen>
+
+    <!-- FONT SIZES -->
+    <dimen name="font_size_extra_extra_small">10sp</dimen>
+    <dimen name="font_size_extra_small">12sp</dimen>
+    <dimen name="font_size_small">14sp</dimen>
+    <dimen name="font_size_normal">16sp</dimen>
+    <dimen name="font_size_extra_big">24sp</dimen>
+    <dimen name="font_size_big">20sp</dimen>
+    <dimen name="font_size_medium">18sp</dimen>
+
+</resources>
