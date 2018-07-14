@@ -6,9 +6,9 @@ import dagger.Provides
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import org.litlab.kidappolis.di.qualifiers.BaseOkHttpClient
-import org.litlab.kidappolis.di.qualifiers.OkHttpInterceptors
-import org.litlab.kidappolis.di.qualifiers.OkHttpNetworkInterceptors
+import com.damiankwasniak.ryanair.di.qualifiers.BaseOkHttpClient
+import com.damiankwasniak.ryanair.di.qualifiers.OkHttpInterceptors
+import com.damiankwasniak.ryanair.di.qualifiers.OkHttpNetworkInterceptors
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 

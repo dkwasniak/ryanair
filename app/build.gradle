@@ -23,14 +23,14 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "STATIONS_SERVER_URL", '"https://tripstest.ryanair.com/static/"'
-            buildConfigField "String", "FLIGHTS_SERVER_URL", '"https://sit- nativeapps.ryanair.com/api/v3/Availability"'
+            buildConfigField "String", "FLIGHTS_SERVER_URL", '"https://sit-nativeapps.ryanair.com/api/v3/"'
         }
 
         debug {
             signingConfig signingConfigs.debug
             minifyEnabled false
             buildConfigField "String", "STATIONS_SERVER_URL", '"https://tripstest.ryanair.com/static/"'
-            buildConfigField "String", "FLIGHTS_SERVER_URL", '"https://sit- nativeapps.ryanair.com/api/v3/Availability"'
+            buildConfigField "String", "FLIGHTS_SERVER_URL", '"https://sit-nativeapps.ryanair.com/api/v3/"'
         }
     }
 
@@ -66,6 +66,10 @@ dependencies {
     implementation 'com.nomtek.utils:nomtekutils:1.0.3'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'io.reactivex:rxkotlin:1.0.0'
+    implementation('com.appyvet:materialrangebar:1.4.3') {
+        exclude module: 'support-compat'
+    }
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
     kapt 'com.google.dagger:dagger-android-processor:2.15'
     kapt 'com.google.dagger:dagger-compiler:2.15'
@@ -74,4 +78,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "com.nhaarman:mockito-kotlin:1.4.0"
 }

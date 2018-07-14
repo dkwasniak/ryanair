@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.detail.ui.FlightDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarNoInset"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/colorPrimary"
+        tools:title="Toolbar title"
+        tools:titleTextColor="@color/white" />
+
+
+    <TextView
+        android:id="@+id/flightDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/material_baseline_grid_2x"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        android:textSize="@dimen/font_size_normal"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:text="28/09/2018" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/material_baseline_grid_1x"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        app:layout_constraintTop_toBottomOf="@id/flightDateLabel">
+
+        <com.damiankwasniak.ryanair.ui.widget.PriceViewLayout
+            android:id="@+id/regularFareView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label="@string/regular_fare" />
+
+        <com.damiankwasniak.ryanair.ui.widget.PriceViewLayout
+            android:id="@+id/businessFareView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label="@string/business_fare" />
+
+        <com.damiankwasniak.ryanair.ui.widget.PriceViewLayout
+            android:id="@+id/leisureFareView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:label="@string/leisure_fare" />
+
+    </LinearLayout>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/leftGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/material_baseline_grid_2x" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/rightGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/material_baseline_grid_2x" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
-import org.litlab.kidappolis.di.qualifiers.OkHttpInterceptors
-import org.litlab.kidappolis.di.qualifiers.OkHttpNetworkInterceptors
+import com.damiankwasniak.ryanair.di.qualifiers.OkHttpInterceptors
+import com.damiankwasniak.ryanair.di.qualifiers.OkHttpNetworkInterceptors
 import java.util.*
 import javax.inject.Singleton
 

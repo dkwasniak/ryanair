@@ -1,6 +1,7 @@
 package com.damiankwasniak.ryanair.feature.stations.model
 
 import android.os.Parcelable
+import com.damiankwasniak.emptyString
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -8,36 +9,41 @@ import kotlinx.android.parcel.Parcelize
 data class StationModel(
 
         @SerializedName("code")
-        var code: String,
+        var code: String? = emptyString,
 
         @SerializedName("name")
-        var name: String,
+        var name: String? = emptyString,
 
         @SerializedName("alternateName")
-        var alternateName: String? = null,
+        var alternateName: String? = emptyString,
 
         @SerializedName("alias")
-        var alias: List<String>? = null,
+        var alias: List<String> = emptyList(),
 
         @SerializedName("countryCode")
-        var countryCode: String? = null,
+        var countryCode: String? = emptyString,
 
         @SerializedName("countryName")
-        var countryName: String? = null,
+        var countryName: String? = emptyString,
 
         @SerializedName("countryGroupCode")
-        var countryGroupCode: String? = null,
+        var countryGroupCode: String? = emptyString,
 
         @SerializedName("countryGroupName")
-        var countryGroupName: String? = null,
+        var countryGroupName: String? = emptyString,
 
         @SerializedName("timeZoneCode")
-        var timeZoneCode: String? = null,
+        var timeZoneCode: String? = emptyString,
 
         @SerializedName("latitude")
-        var latitude: String? = null,
+        var latitude: String? = emptyString,
 
         @SerializedName("longitude")
-        var longitude: String? = null
+        var longitude: String? = emptyString
 
-) : Parcelable
+) : Parcelable {
+
+    fun isEmptyModel(): Boolean {
+        return code.isNullOrEmpty()
+    }
+}

@@ -13,14 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.mainscreen.MainActivity">
+        <activity android:name=".feature.mainscreen.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.damiankwasniak.ryanair.feature.stations.ui.StationsListActivity"></activity>
+        <activity android:name=".feature.stations.ui.StationsListActivity" />
+        <activity android:name=".feature.searchresult.ui.SearchResultActivity" />
+        <activity android:name=".feature.detail.ui.FlightDetailActivity"></activity>
     </application>
 
 </manifest>

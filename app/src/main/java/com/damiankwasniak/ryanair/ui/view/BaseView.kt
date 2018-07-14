@@ -1,4 +1,4 @@
-package com.damiankwasniak.ryanair.feature.ui.view
+package com.damiankwasniak.ryanair.ui.view
 
 import android.support.annotation.StringRes
 

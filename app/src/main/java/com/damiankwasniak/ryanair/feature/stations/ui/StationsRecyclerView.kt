@@ -6,16 +6,16 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import com.damiankwasniak.ryanair.feature.stations.model.StationModel
 import com.damiankwasniak.ryanair.feature.stations.ui.adapter.StationsListRecyclerViewAdapter
-import com.damiankwasniak.ryanair.feature.stations.ui.decorator.StationsRecyclerViewItemDecorator
+import com.damiankwasniak.ryanair.ui.decorator.DividerRecyclerViewItemDecorator
 
 class StationsRecyclerView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
-    var onStationSelected = fun(station: StationModel) {}
-    set(value) {
-        stationsAdapter.onStationSelected = value
-    }
+    var onStationSelected = fun(flight: StationModel) {}
+        set(value) {
+            stationsAdapter.onStationSelected = value
+        }
 
     var items: List<StationModel> = listOf()
         set(value) {
@@ -28,7 +28,7 @@ class StationsRecyclerView @JvmOverloads constructor(
 
     init {
         layoutManager = LinearLayoutManager(context)
-        addItemDecoration(StationsRecyclerViewItemDecorator(context))
+        addItemDecoration(DividerRecyclerViewItemDecorator(context))
         adapter = stationsAdapter
     }
 }

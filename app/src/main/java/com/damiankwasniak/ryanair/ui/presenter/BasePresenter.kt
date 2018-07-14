@@ -1,7 +1,7 @@
-package com.damiankwasniak.ryanair.feature.ui.presenter
+package com.damiankwasniak.ryanair.ui.presenter
 
 import android.support.annotation.CallSuper
-import com.damiankwasniak.ryanair.feature.ui.view.BaseView
+import com.damiankwasniak.ryanair.ui.view.BaseView
 
 
 abstract class BasePresenter<T : BaseView> {

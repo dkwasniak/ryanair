@@ -1,6 +1,6 @@
 package com.damiankwasniak.ryanair.feature.mainscreen.ui
 
-import com.damiankwasniak.ryanair.feature.ui.view.BaseView
+import com.damiankwasniak.ryanair.ui.view.BaseView
 
 interface MainView: BaseView {
 
@@ -13,4 +13,6 @@ interface MainView: BaseView {
     fun initDatePicker(year: Int, month: Int, day: Int, maxDate: Long, minDate: Long)
 
     fun setDate(date: String)
+
+    fun setSearchButtonEnabled(enable: Boolean)
 }

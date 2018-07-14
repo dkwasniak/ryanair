@@ -1,4 +1,4 @@
-package com.damiankwasniak.ryanair.feature.stations.ui.decorator
+package com.damiankwasniak.ryanair.ui.decorator
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.damiankwasniak.ryanair.R
 
-class StationsRecyclerViewItemDecorator(context: Context) : RecyclerView.ItemDecoration() {
+class DividerRecyclerViewItemDecorator(context: Context) : RecyclerView.ItemDecoration() {
 
     private val divider: Drawable? = ContextCompat.getDrawable(context, R.drawable.recycler_view_divider)
 

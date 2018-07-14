@@ -1,35 +1,27 @@
 package com.damiankwasniak.ryanair.feature.stations.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.damiankwasniak.ryanair.R
-import com.damiankwasniak.ryanair.feature.stations.model.StationListModel
+import com.damiankwasniak.ryanair.applicationComponent
 import com.damiankwasniak.ryanair.feature.stations.model.StationModel
-import com.damiankwasniak.ryanair.feature.stations.reducer.StationsReducer
-import com.damiankwasniak.ryanair.feature.stations.reducer.StationsState
-import com.damiankwasniak.ryanair.store
+import com.damiankwasniak.ryanair.feature.stations.presenter.StationsActivityPresenter
 import com.damiankwasniak.setViewVisibility
 import kotlinx.android.synthetic.main.activity_stations_list.*
-import tw.geothings.rekotlin.StoreSubscriber
-import android.content.Intent
+import javax.inject.Inject
 
 
-
-class StationsListActivity : AppCompatActivity(), StoreSubscriber<StationsState> {
+class StationsListActivity : AppCompatActivity(), StationsView {
 
     companion object {
 
-        private const val STATIONS_LIST = "stations_list"
-
         const val SELECTED_STATION = "selected_station"
-
-        fun params(stationListModel: StationListModel): Bundle {
-            val bundle = Bundle()
-            bundle.putParcelable(STATIONS_LIST, stationListModel)
-            return bundle
-        }
     }
+
+    @Inject
+    lateinit var stationsActivityPresenter: StationsActivityPresenter
 
     val onStationSelected = fun(station: StationModel) {
         val returnIntent = Intent()
@@ -40,35 +32,31 @@ class StationsListActivity : AppCompatActivity(), StoreSubscriber<StationsState>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applicationComponent.inject(this)
         setContentView(R.layout.activity_stations_list)
-        stationList = intent.getParcelableExtra(STATIONS_LIST)
         stationsRecyclerView.onStationSelected = onStationSelected
-    }
-
-    override fun newState(state: StationsState) {
-        if (StationsReducer.stationsFetched(state)) {
-            stationsRecyclerView.items = state.stationsList.stations
-        }
-
-        progressBar.setViewVisibility(StationsReducer.showProgress(state))
-        stationsRecyclerView.setViewVisibility(!StationsReducer.showProgress(state))
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        store.subscribe(this) {
-            it.select {
-                it.stationsState
-            }
-        }
+        stationsActivityPresenter.attached(this)
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        store.unsubscribe(this)
+        stationsActivityPresenter.detached()
     }
 
-    private var stationList: StationListModel? = null
+    override fun showProgress(showProgress: Boolean) {
+        progressBar.setViewVisibility(showProgress)
+        stationsRecyclerView.setViewVisibility(!showProgress)
+    }
 
-    private var currentSelectionIndex = -1
+    override fun setResult(stations: List<StationModel>) {
+        stationsRecyclerView.items = stations
+    }
+
+    override fun showError(msg: Int) {
+
+    }
 }

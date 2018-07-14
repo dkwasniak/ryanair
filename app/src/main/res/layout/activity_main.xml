@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".feature.mainscreen.MainActivity">
+    tools:context=".feature.mainscreen.ui.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -82,30 +82,42 @@
         app:layout_constraintStart_toStartOf="@id/leftGuideline"
         app:layout_constraintTop_toBottomOf="@id/departureDateTextInput">
 
-        <com.damiankwasniak.widget.StepperView
+        <com.damiankwasniak.ryanair.ui.widget.StepperView
             android:id="@+id/numberOfAdultsStepper"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:label="@string/adults_label"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/numberOfTeensStepper"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <com.damiankwasniak.widget.StepperView
+        <com.damiankwasniak.ryanair.ui.widget.StepperView
             android:id="@+id/numberOfTeensStepper"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:label="@string/teens_label"
-            app:layout_constraintStart_toEndOf="@id/numberOfAdultsStepper"
             app:layout_constraintEnd_toStartOf="@id/numberOfChildrenStepper"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toEndOf="@id/numberOfAdultsStepper" />
 
-        <com.damiankwasniak.widget.StepperView
+        <com.damiankwasniak.ryanair.ui.widget.StepperView
             android:id="@+id/numberOfChildrenStepper"
             android:layout_width="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/numberOfTeensStepper"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
             app:label="@string/children_label"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/numberOfTeensStepper" />
     </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="@id/leftGuideline"
+        app:layout_constraintEnd_toEndOf="@id/rightGuideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/material_baseline_grid_4x"
+        android:text="@string/search"
+        />
 
     <android.support.constraint.Guideline
         android:id="@+id/leftGuideline"

@@ -2,18 +2,21 @@ package com.damiankwasniak.ryanair.feature.mainscreen.presenter
 
 import com.damiankwasniak.emptyString
 import com.damiankwasniak.ryanair.feature.mainscreen.ui.MainView
+import com.damiankwasniak.ryanair.feature.searchresult.dispatcher.SearchFlightsDispatcher
 import com.damiankwasniak.ryanair.feature.stations.dispatcher.StationsDispatcher
 import com.damiankwasniak.ryanair.feature.stations.model.StationModel
-import com.damiankwasniak.ryanair.feature.ui.presenter.BasePresenter
+import com.damiankwasniak.ryanair.ui.presenter.BasePresenter
 import java.util.*
 import javax.inject.Inject
 
-class MainActivityPresenter @Inject constructor(private val stationsDispatcher: StationsDispatcher) : BasePresenter<MainView>() {
+class MainActivityPresenter @Inject constructor(
+        private val stationsDispatcher: StationsDispatcher,
+        private val searchFlightsDispatcher: SearchFlightsDispatcher
+) : BasePresenter<MainView>() {
 
+    private var originStationModel: StationModel = StationModel()
 
-    private var originStationModel: StationModel? = null
-
-    private var destinationStationModel: StationModel? = null
+    private var destinationStationModel: StationModel = StationModel()
 
     private val calendar: Calendar = Calendar.getInstance(TimeZone.getDefault())
 
@@ -39,16 +42,18 @@ class MainActivityPresenter @Inject constructor(private val stationsDispatcher: 
     }
 
     fun onOriginStationSelected(stationModel: StationModel?) {
-        stationModel?.let {
+        stationModel?.name?.let {
             originStationModel = stationModel
-            view?.setOriginStationName(stationModel.name)
+            view?.setOriginStationName(it)
+            onDataChanged()
         }
     }
 
     fun onDestinationStationSelected(stationModel: StationModel?) {
-        stationModel?.let {
+        stationModel?.name?.let {
             destinationStationModel = stationModel
-            view?.setDestinationStationName(stationModel.name)
+            view?.setDestinationStationName(it)
+            onDataChanged()
         }
     }
 
@@ -56,7 +61,20 @@ class MainActivityPresenter @Inject constructor(private val stationsDispatcher: 
         date?.let {
             selectedDate = date
             view?.setDate(date)
+            onDataChanged()
         }
+    }
+
+    private fun onDataChanged() {
+        if (isRequiredDataFilledIn()) {
+            view?.setSearchButtonEnabled(true)
+        } else {
+            view?.setSearchButtonEnabled(false)
+        }
+    }
+
+    private fun isRequiredDataFilledIn(): Boolean {
+        return !originStationModel.isEmptyModel() && !destinationStationModel.isEmptyModel() && selectedDate.isNotEmpty() && adultsNumber > 0
     }
 
     fun initDatePicker() {
@@ -66,6 +84,7 @@ class MainActivityPresenter @Inject constructor(private val stationsDispatcher: 
 
     fun onAdultsNumberChanged(value: Int) {
         adultsNumber = value
+        onDataChanged()
     }
 
     fun onTeensNumberChanged(value: Int) {
@@ -74,5 +93,10 @@ class MainActivityPresenter @Inject constructor(private val stationsDispatcher: 
 
     fun onChildrenNumberChanged(value: Int) {
         childrenNumber = value
+    }
+
+    fun onSearchButtonClicked() {
+       searchFlightsDispatcher.fetchAvailableFlights(originStationModel, destinationStationModel, selectedDate,
+                adultsNumber, teensNumber, childrenNumber)
     }
 }

@@ -1,24 +1,25 @@
-package com.damiankwasniak.ryanair.feature.mainscreen
+package com.damiankwasniak.ryanair.feature.mainscreen.ui
 
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.DatePicker
+import com.damiankwasniak.onClickWithDebounce
+import com.damiankwasniak.ryanair.ui.BaseActivity
 import com.damiankwasniak.ryanair.R
 import com.damiankwasniak.ryanair.applicationComponent
 import com.damiankwasniak.ryanair.feature.mainscreen.presenter.MainActivityPresenter
-import com.damiankwasniak.ryanair.feature.mainscreen.ui.MainView
+import com.damiankwasniak.ryanair.feature.searchresult.ui.SearchResultActivity
 import com.damiankwasniak.ryanair.feature.stations.reducer.StationsReducer
 import com.damiankwasniak.ryanair.feature.stations.ui.StationsListActivity
 import com.damiankwasniak.ryanair.store
+import com.damiankwasniak.ryanair.ui.toolbar.ToolbarTitleDecorator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), MainView, DatePickerDialog.OnDateSetListener {
-
+class MainActivity : BaseActivity(), MainView, DatePickerDialog.OnDateSetListener {
 
     companion object {
         const val ORIGIN_REQUEST_CODE = 1111
@@ -37,6 +38,42 @@ class MainActivity : AppCompatActivity(), MainView, DatePickerDialog.OnDateSetLi
         setContentView(R.layout.activity_main)
         initClickListeners()
         initSteppersListeners()
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+        toolbarController
+                .addDecorator(ToolbarTitleDecorator(getString(R.string.main_screen_title)))
+                .build(toolbar, R.layout.toolbar_main_screen)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        mainActivityPresenter.attached(this)
+        mainActivityPresenter.initDatePicker()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        mainActivityPresenter.detached()
+    }
+
+    private fun initClickListeners() {
+        originStationEditText.onClickWithDebounce {
+            startStationsActivity(ORIGIN_REQUEST_CODE)
+        }
+
+        destinationStationEditText.onClickWithDebounce {
+            startStationsActivity(DESTINATION_REQUEST_CODE)
+        }
+
+        departureDateEditText.onClickWithDebounce {
+            dialog.show()
+        }
+        searchButton.onClickWithDebounce {
+            mainActivityPresenter.onSearchButtonClicked()
+            startActivity(Intent(this, SearchResultActivity::class.java))
+        }
     }
 
     private fun initSteppersListeners() {
@@ -70,31 +107,6 @@ class MainActivity : AppCompatActivity(), MainView, DatePickerDialog.OnDateSetLi
         departureDateEditText.setText(date)
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        mainActivityPresenter.attached(this)
-        mainActivityPresenter.initDatePicker()
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        mainActivityPresenter.detached()
-    }
-
-    private fun initClickListeners() {
-        originStationEditText.setOnClickListener {
-            startStationsActivity(ORIGIN_REQUEST_CODE)
-        }
-
-        destinationStationEditText.setOnClickListener {
-            startStationsActivity(DESTINATION_REQUEST_CODE)
-        }
-
-        departureDateEditText.setOnClickListener {
-            dialog.show()
-        }
-    }
-
     private fun startStationsActivity(code: Int) {
         if (!StationsReducer.stationsFetched(store.state.stationsState)) {
             mainActivityPresenter.fetchStations()
@@ -113,6 +125,10 @@ class MainActivity : AppCompatActivity(), MainView, DatePickerDialog.OnDateSetLi
                 }
             }
         }
+    }
+
+    override fun setSearchButtonEnabled(enable: Boolean) {
+        searchButton.isEnabled = enable
     }
 
     override fun showError(msg: Int) {

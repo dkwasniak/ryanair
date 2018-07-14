@@ -6,8 +6,8 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import org.litlab.kidappolis.di.qualifiers.FlightsRetrofitClient
-import org.litlab.kidappolis.di.qualifiers.StationsRetrofitClient
+import com.damiankwasniak.ryanair.di.qualifiers.FlightsRetrofitClient
+import com.damiankwasniak.ryanair.di.qualifiers.StationsRetrofitClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

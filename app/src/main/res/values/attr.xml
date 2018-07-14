@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="label" format="string"/>
+
     <declare-styleable name="StepperView">
-        <attr name="label" format="string"/>
+        <attr name="label"/>
     </declare-styleable>
+
+    <declare-styleable name="PriceViewLayout">
+        <attr name="label"/>
+    </declare-styleable>
+
 
 </resources>

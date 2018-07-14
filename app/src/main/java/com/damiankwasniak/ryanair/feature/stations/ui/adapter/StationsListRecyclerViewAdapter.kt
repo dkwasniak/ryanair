@@ -12,7 +12,7 @@ class StationsListRecyclerViewAdapter: RecyclerView.Adapter<StationsListRecycler
 
     var items: List<StationModel> = listOf()
 
-    var onStationSelected = fun(station: StationModel) {}
+    var onStationSelected = fun(flight: StationModel) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StationViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.station_list_item, parent, false)

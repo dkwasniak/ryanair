@@ -1,4 +1,4 @@
-package org.litlab.kidappolis.di.qualifiers
+package com.damiankwasniak.ryanair.di.qualifiers
 
 import javax.inject.Qualifier
 

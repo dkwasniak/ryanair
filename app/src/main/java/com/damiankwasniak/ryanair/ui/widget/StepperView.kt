@@ -1,4 +1,4 @@
-package com.damiankwasniak.widget
+package com.damiankwasniak.ryanair.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet
