@@ -96,7 +96,7 @@ class MainActivityPresenter @Inject constructor(
     }
 
     fun onSearchButtonClicked() {
-       searchFlightsDispatcher.fetchAvailableFlights(originStationModel, destinationStationModel, selectedDate,
-                adultsNumber, teensNumber, childrenNumber)
+        searchFlightsDispatcher.fetchAvailableFlights(originStationModel, destinationStationModel, selectedDate,
+                 adultsNumber, teensNumber, childrenNumber)
     }
 }

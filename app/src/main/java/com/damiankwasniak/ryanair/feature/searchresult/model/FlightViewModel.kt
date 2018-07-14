@@ -15,9 +15,15 @@ data class FlightViewModel(
 
         val flightRegularFare: Double = 0.0,
 
-        val flightBusinessFare: Double = 0.0,
+        val currency: String = emptyString,
 
-        val flightLeisureFare: Double = 0.0,
+        val origin: String = emptyString,
 
-        val currency: String = emptyString
+        val destination: String = emptyString,
+
+        val infantsLeft: Int = 0,
+
+        val fareClass: String = emptyString,
+
+        val discountPercent: Int = 0
 ) : Parcelable

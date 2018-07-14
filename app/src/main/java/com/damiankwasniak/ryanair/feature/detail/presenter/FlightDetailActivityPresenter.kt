@@ -13,20 +13,7 @@ class FlightDetailActivityPresenter @Inject constructor() : BasePresenter<Flight
     fun setFlightViewModel(flightViewModel: FlightViewModel?) {
         this.flightViewModel = flightViewModel
         flightViewModel?.let {
-            view?.setFlightDate(it.flightDate)
-            view?.setRegularFare(it.flightRegularFare, it.currency)
-
-            if (it.flightBusinessFare > 0.0) {
-                view?.setBusinessFare(it.flightBusinessFare, it.currency)
-            } else {
-                view?.noBusinessFareData()
-            }
-
-            if (it.flightLeisureFare > 0.0) {
-                view?.setLeisureFare(it.flightLeisureFare, it.currency)
-            } else {
-                view?.noLeisureFareData()
-            }
+            view?.bindTripDate(it)
         }
 
     }

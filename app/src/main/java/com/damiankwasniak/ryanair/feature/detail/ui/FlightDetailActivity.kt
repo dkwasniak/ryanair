@@ -3,14 +3,12 @@ package com.damiankwasniak.ryanair.feature.detail.ui
 import android.os.Bundle
 import com.damiankwasniak.emptyString
 import com.damiankwasniak.ryanair.R
-import com.damiankwasniak.ryanair.R.id.*
 import com.damiankwasniak.ryanair.applicationComponent
 import com.damiankwasniak.ryanair.feature.detail.presenter.FlightDetailActivityPresenter
 import com.damiankwasniak.ryanair.feature.searchresult.model.FlightViewModel
 import com.damiankwasniak.ryanair.ui.BaseActivity
 import com.damiankwasniak.ryanair.ui.toolbar.ToolbarBackActionDecorator
 import com.damiankwasniak.ryanair.ui.toolbar.ToolbarTitleDecorator
-import com.nomtek.utils.visible
 import kotlinx.android.synthetic.main.activity_flight_detail.*
 import javax.inject.Inject
 
@@ -65,28 +63,45 @@ class FlightDetailActivity : BaseActivity(), FlightDetailView {
         flightDetailActivityPresenter.detached()
     }
 
-    override fun setFlightDate(flightDate: String) {
+    override fun bindTripDate(flightModel: FlightViewModel) {
+        with(flightModel) {
+            setFlightDate(flightDate)
+            setRegularFare(flightRegularFare, currency)
+            setFlightOrigin(origin)
+            setFlightDestination(destination)
+            setFlightInfantsLeft(infantsLeft)
+            setFlightFareClass(fareClass)
+            setFlightDiscount(discountPercent)
+        }
+
+    }
+
+    private fun setFlightDiscount(discountPercent: Int) {
+        discountTextView.text = String.format(this.getString(R.string.discount), discountPercent)
+    }
+
+    private fun setFlightFareClass(fareClass: String) {
+        fareClassTextView.text = String.format(this.getString(R.string.fare_class), fareClass)
+    }
+
+    private fun setFlightInfantsLeft(infantsLeft: Int) {
+        infantsLeftTextView.text = String.format(this.getString(R.string.infants_left), infantsLeft)
+    }
+
+    private fun setFlightDestination(destination: String) {
+        destinationTextView.text = String.format(this.getString(R.string.destination), destination)
+    }
+
+    private fun setFlightOrigin(origin: String) {
+        originTextView.text = String.format(this.getString(R.string.origin), origin)
+    }
+
+    private fun setFlightDate(flightDate: String) {
         flightDateLabel.text = String.format(getString(R.string.flight_date), flightDate)
     }
 
-    override fun setRegularFare(flightRegularFare: Double, currency: String) {
-        regularFareView.setPrice(flightRegularFare, currency)
-    }
-
-    override fun setBusinessFare(flightBusinessFare: Double, currency: String) {
-        businessFareView.setPrice(flightBusinessFare, currency)
-    }
-
-    override fun setLeisureFare(flightLeisureFare: Double, currency: String) {
-        leisureFareView.setPrice(flightLeisureFare, currency)
-    }
-
-    override fun noLeisureFareData() {
-        leisureFareView.setPrice(noDataProvided = true)
-    }
-
-    override fun noBusinessFareData() {
-        businessFareView.setPrice(noDataProvided = true)
+    private fun setRegularFare(flightRegularFare: Double, currency: String) {
+        regularFareView.text = String.format(this.getString(R.string.price), flightRegularFare, currency)
     }
 
 }

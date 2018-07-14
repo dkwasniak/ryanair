@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".feature.detail.ui.FlightDetailActivity">
 
     <android.support.v7.widget.Toolbar
@@ -17,60 +18,76 @@
         tools:title="Toolbar title"
         tools:titleTextColor="@color/white" />
 
-
-    <TextView
-        android:id="@+id/flightDateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/material_baseline_grid_2x"
-        app:layout_constraintStart_toStartOf="@id/leftGuideline"
-        android:textSize="@dimen/font_size_normal"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:text="28/09/2018" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/material_baseline_grid_1x"
-        app:layout_constraintStart_toStartOf="@id/leftGuideline"
-        app:layout_constraintTop_toBottomOf="@id/flightDateLabel">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/material_baseline_grid_2x"
+        android:orientation="vertical">
 
-        <com.damiankwasniak.ryanair.ui.widget.PriceViewLayout
+        <TextView
+            android:id="@+id/flightDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            app:layout_constraintStart_toStartOf="@id/leftGuideline"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="28/09/2018" />
+
+        <TextView
             android:id="@+id/regularFareView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:label="@string/regular_fare" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            tools:text="Regular fare: 120$"/>
 
-        <com.damiankwasniak.ryanair.ui.widget.PriceViewLayout
-            android:id="@+id/businessFareView"
+        <TextView
+            android:id="@+id/originTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:label="@string/business_fare" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            tools:text="@string/origin"/>
 
-        <com.damiankwasniak.ryanair.ui.widget.PriceViewLayout
-            android:id="@+id/leisureFareView"
+        <TextView
+            android:id="@+id/destinationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:label="@string/leisure_fare" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            tools:text="@string/destination"/>
+
+        <TextView
+            android:id="@+id/infantsLeftTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            tools:text="@string/infants_left"/>
+
+        <TextView
+            android:id="@+id/fareClassTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            tools:text="@string/fare_class"/>
+
+        <TextView
+            android:id="@+id/discountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            tools:text="@string/discount"/>
 
     </LinearLayout>
 
-
-    <android.support.constraint.Guideline
-        android:id="@+id/leftGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/material_baseline_grid_2x" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/rightGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/material_baseline_grid_2x" />
-
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

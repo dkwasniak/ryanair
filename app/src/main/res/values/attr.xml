@@ -7,7 +7,7 @@
         <attr name="label"/>
     </declare-styleable>
 
-    <declare-styleable name="PriceViewLayout">
+    <declare-styleable name="DetailedLabelViewLayout">
         <attr name="label"/>
     </declare-styleable>
 

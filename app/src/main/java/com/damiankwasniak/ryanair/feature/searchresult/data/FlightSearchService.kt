@@ -52,15 +52,37 @@ class FlightSearchService @Inject constructor(
         var flightDuration: String
         var flightNumber: String
         var flightDateOut: String
+        var origin: String
+        var dest: String
+        var infantsLeft: Int
+        var fareClass: String
         return it.trips.flatMap {
+
+            origin = it.origin
+            dest = it.destination
+
             it.dates.flatMap {
                 it.flights.flatMap {
+
                     flightNumber = it.flightNumber
                     flightDuration = it.duration
                     flightDateOut = getDate(it.timeUTC[0])
+                    infantsLeft = it.infantsLeft
+                    fareClass = it.regularFare.fareClass
+
                     it.regularFare.fares.map {
-                        // businnesFare & leusureFare is set to 0.0 because API is not providing this data
-                        FlightViewModel(flightDateOut, flightNumber, flightDuration, it.amount, 0.0, 0.0, currency)
+                        FlightViewModel(
+                                flightDate = flightDateOut,
+                                flightNumber = flightNumber,
+                                flightDuration = flightDuration,
+                                flightRegularFare = it.amount,
+                                currency = currency,
+                                origin = origin,
+                                destination = dest,
+                                infantsLeft = infantsLeft,
+                                fareClass = fareClass,
+                                discountPercent = it.discountInPercent
+                        )
                     }
                 }
             }

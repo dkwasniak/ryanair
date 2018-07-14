@@ -20,9 +20,7 @@
     <string name="price">%1$.2f %2$s</string>
 
     <!-- Flight detail screen-->
-    <string name="regular_fare">Regular fare:</string>
-    <string name="business_fare">Business fare:</string>
-    <string name="leisure_fare">Leisure fare:</string>
+    <string name="regular_fare">Regular fare: %1$.2f %2$s</string>
     <string name="flight_date">Flight date: %1$s</string>
 
     <!-- SCREEN TITLES -->
@@ -32,5 +30,10 @@
     <string name="detail_screen_title">Flight: %1$s</string>
     <string name="no_results_found">No results found</string>
     <string name="no_data">no data</string>
+    <string name="origin">Origin: %1$s</string>
+    <string name="destination">Destination: %1$s</string>
+    <string name="infants_left">Infants left: %1$d</string>
+    <string name="fare_class">Fare class: %1$s</string>
+    <string name="discount">Discount: %1$d percent</string>
 
 </resources>

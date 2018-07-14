@@ -61,7 +61,11 @@ class NetworkExceptionMapper @Inject constructor(
         return try {
             val errorBody = JSONObject(exception.response().errorBody()?.string())
             val rawMessage = errorBody[ERROR_BODY_MESSAGE_KEY].toString()
-            val apiCode = Integer.parseInt(errorBody[ERROR_BODY_CODE_KEY].toString())
+            val apiCode = if (errorBody[ERROR_BODY_CODE_KEY] is Int) {
+                Integer.parseInt(errorBody[ERROR_BODY_CODE_KEY].toString())
+            } else {
+                ApiErrorCodes.UNKNOWN
+            }
             ApiError(exception.code(),
                     apiCode,
                     rawMessage,

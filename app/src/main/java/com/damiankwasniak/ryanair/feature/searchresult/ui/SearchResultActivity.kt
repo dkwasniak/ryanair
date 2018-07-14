@@ -18,6 +18,7 @@ import com.damiankwasniak.showToast
 import com.nomtek.utils.gone
 import com.nomtek.utils.visible
 import kotlinx.android.synthetic.main.activity_search_result.*
+import kotlinx.android.synthetic.main.stepper_view_layout.*
 import kotlinx.android.synthetic.main.toolbar_search_result_screen.*
 import javax.inject.Inject
 
@@ -44,6 +45,7 @@ class SearchResultActivity : BaseActivity(), SearchResultView {
 
     override fun setInitialValueOfRangebar(currentMaxPriceValue: Float) {
         rangebar.setOnRangeBarChangeListener(null)
+        setFilterLabel(currentMaxPriceValue)
         rangebar.setRangePinsByValue(0f, currentMaxPriceValue)
         rangebar.setOnRangeBarChangeListener(rangeBarChangeListener)
     }
@@ -81,12 +83,16 @@ class SearchResultActivity : BaseActivity(), SearchResultView {
         if (availableFlightsList.isNotEmpty()) {
             noResultTextView.gone()
             searchResultRecyclerView.visible()
-            filterLabel.text = String.format(getString(R.string.current_maximum_price), currentMaxPriceValue.toString())
+            setFilterLabel(currentMaxPriceValue)
             searchResultRecyclerView.items = availableFlightsList
         } else {
             noResultTextView.visible()
             searchResultRecyclerView.gone()
         }
+    }
+
+    private fun setFilterLabel(currentMaxPriceValue: Float) {
+        filterLabel.text = String.format(getString(R.string.current_maximum_price), currentMaxPriceValue.toString())
     }
 
     override fun setToolbarTitle(originStationName: String, destinationStationName: String) {
@@ -101,7 +107,7 @@ class SearchResultActivity : BaseActivity(), SearchResultView {
     }
 
     override fun showError(error: String) {
-        if(!error.isNotEmpty()) {
+        if(error.isNotEmpty()) {
             showToast(error)
         } else {
             showToast(getString(R.string.general_critical_error))

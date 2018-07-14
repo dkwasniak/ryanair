@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
 import com.damiankwasniak.onClickWithDebounce
-import com.damiankwasniak.ryanair.ui.BaseActivity
 import com.damiankwasniak.ryanair.R
 import com.damiankwasniak.ryanair.applicationComponent
 import com.damiankwasniak.ryanair.feature.mainscreen.presenter.MainActivityPresenter
@@ -14,7 +13,9 @@ import com.damiankwasniak.ryanair.feature.searchresult.ui.SearchResultActivity
 import com.damiankwasniak.ryanair.feature.stations.reducer.StationsReducer
 import com.damiankwasniak.ryanair.feature.stations.ui.StationsListActivity
 import com.damiankwasniak.ryanair.store
+import com.damiankwasniak.ryanair.ui.BaseActivity
 import com.damiankwasniak.ryanair.ui.toolbar.ToolbarTitleDecorator
+import com.damiankwasniak.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -137,6 +138,10 @@ class MainActivity : BaseActivity(), MainView, DatePickerDialog.OnDateSetListene
 
     override fun setDestinationStationName(name: String) {
         destinationStationEditText.setText(name)
+    }
+
+    override fun showError(error: String) {
+        showToast(getString(R.string.general_critical_error))
     }
 
 }

@@ -58,7 +58,7 @@ class StationsListActivity : AppCompatActivity(), StationsView {
     }
 
     override fun showError(error: String) {
-        if(!error.isNotEmpty()) {
+        if(error.isNotEmpty()) {
             showToast(error)
         } else {
             showToast(getString(R.string.general_critical_error))

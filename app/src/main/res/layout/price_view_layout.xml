@@ -14,7 +14,7 @@
         tools:text="Regular price:" />
 
     <TextView
-        android:id="@+id/priceValueTextView"
+        android:id="@+id/detailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/material_baseline_grid_1x"
