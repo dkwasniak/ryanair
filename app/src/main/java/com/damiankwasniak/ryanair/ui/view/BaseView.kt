@@ -4,6 +4,8 @@ import com.damiankwasniak.emptyString
 
 interface BaseView {
 
-    fun showError(error: String = emptyString)
+    fun showError(error: String = emptyString){
+        // no op
+    }
 
 }

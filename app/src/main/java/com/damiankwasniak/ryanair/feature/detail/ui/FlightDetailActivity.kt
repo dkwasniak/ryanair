@@ -3,6 +3,7 @@ package com.damiankwasniak.ryanair.feature.detail.ui
 import android.os.Bundle
 import com.damiankwasniak.emptyString
 import com.damiankwasniak.ryanair.R
+import com.damiankwasniak.ryanair.R.id.*
 import com.damiankwasniak.ryanair.applicationComponent
 import com.damiankwasniak.ryanair.feature.detail.presenter.FlightDetailActivityPresenter
 import com.damiankwasniak.ryanair.feature.searchresult.model.FlightViewModel
@@ -88,7 +89,4 @@ class FlightDetailActivity : BaseActivity(), FlightDetailView {
         businessFareView.setPrice(noDataProvided = true)
     }
 
-    override fun showError(msg: Int) {
-
-    }
 }

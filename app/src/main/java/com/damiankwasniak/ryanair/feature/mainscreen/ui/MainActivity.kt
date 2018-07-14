@@ -131,10 +131,6 @@ class MainActivity : BaseActivity(), MainView, DatePickerDialog.OnDateSetListene
         searchButton.isEnabled = enable
     }
 
-    override fun showError(msg: Int) {
-
-    }
-
     override fun setOriginStationName(name: String) {
         originStationEditText.setText(name)
     }
