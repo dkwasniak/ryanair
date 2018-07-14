@@ -30,5 +30,9 @@ class StationsActivityPresenter @Inject constructor() : BasePresenter<StationsVi
             view?.setResult(state.stationsList.stations)
         }
         view?.showProgress(StationsReducer.showProgress(state))
+        if(StationsReducer.isError(state)) {
+            view?.showError()
+        }
+
     }
 }

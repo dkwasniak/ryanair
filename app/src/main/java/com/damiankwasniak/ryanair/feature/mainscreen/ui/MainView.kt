@@ -4,8 +4,6 @@ import com.damiankwasniak.ryanair.ui.view.BaseView
 
 interface MainView: BaseView {
 
-    override fun showError(msg: Int)
-
     fun setOriginStationName(name: String)
 
     fun setDestinationStationName(name: String)

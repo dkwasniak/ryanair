@@ -10,7 +10,7 @@ import tw.geothings.rekotlin.Action
 data class StationsState(
         val stationsListFetching: Boolean = false,
         val stationsList: StationListModel = StationListModel(),
-        val error: Boolean = true
+        val isError: Boolean = true
 )
 
 object StationsReducer {
@@ -19,13 +19,13 @@ object StationsReducer {
         var state = stationsState ?: StationsState()
         when (action) {
             is FetchStations -> {
-                state = state.copy(stationsListFetching = true, stationsList = StationListModel(), error = false)
+                state = state.copy(stationsListFetching = true, stationsList = StationListModel(), isError = false)
             }
             is StationsFetched -> {
-                state = state.copy(stationsListFetching = false, stationsList = action.stationsList, error = false)
+                state = state.copy(stationsListFetching = false, stationsList = action.stationsList, isError = false)
             }
             is StationsFetchingError -> {
-                state = state.copy(stationsListFetching = false, error = true)
+                state = state.copy(stationsListFetching = false, isError = true)
             }
         }
         return state
@@ -37,6 +37,10 @@ object StationsReducer {
 
     fun showProgress(state: StationsState): Boolean {
         return state.stationsListFetching
+    }
+
+    fun isError(state: StationsState): Boolean {
+        return state.isError
     }
 
 }

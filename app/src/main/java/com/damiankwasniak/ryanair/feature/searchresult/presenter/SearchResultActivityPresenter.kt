@@ -50,6 +50,11 @@ class SearchResultActivityPresenter @Inject constructor(
                 view?.setResult(state.availableFlightsList.filter { it.flightRegularFare <= currentMaxPriceValue }, currentMaxPriceValue)
             }
         }
+
+
+        if(AvailableFlightReducer.isError(state)){
+            view?.showError()
+        }
     }
 
     fun onMaxPriceChanged(currentMaxPriceValue: Float) {

@@ -1,9 +1,9 @@
 package com.damiankwasniak.ryanair.ui.view
 
-import android.support.annotation.StringRes
+import com.damiankwasniak.emptyString
 
 interface BaseView {
 
-    fun showError(@StringRes msg: Int)
+    fun showError(error: String = emptyString)
 
 }

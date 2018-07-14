@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 data class ApiError(val statusCode: Int = ApiErrorCodes.UNKNOWN,
                     val apiCode: Int = ApiErrorCodes.UNKNOWN,
-                    /** Raw error errorMessage sent from backend */
+                    /** Raw isError errorMessage sent from backend */
                     val rawMessage: String = "",
                     val errorMessage: String = "") : Throwable()
 

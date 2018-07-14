@@ -9,6 +9,7 @@ import com.damiankwasniak.ryanair.applicationComponent
 import com.damiankwasniak.ryanair.feature.stations.model.StationModel
 import com.damiankwasniak.ryanair.feature.stations.presenter.StationsActivityPresenter
 import com.damiankwasniak.setViewVisibility
+import com.damiankwasniak.showToast
 import kotlinx.android.synthetic.main.activity_stations_list.*
 import javax.inject.Inject
 
@@ -56,7 +57,12 @@ class StationsListActivity : AppCompatActivity(), StationsView {
         stationsRecyclerView.items = stations
     }
 
-    override fun showError(msg: Int) {
+    override fun showError(error: String) {
+        if(!error.isNotEmpty()) {
+            showToast(error)
+        } else {
+            showToast(getString(R.string.general_critical_error))
+        }
 
     }
 }

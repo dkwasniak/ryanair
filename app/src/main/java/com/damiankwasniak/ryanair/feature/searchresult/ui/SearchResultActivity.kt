@@ -14,6 +14,7 @@ import com.damiankwasniak.ryanair.ui.BaseActivity
 import com.damiankwasniak.ryanair.ui.toolbar.ToolbarBackActionDecorator
 import com.damiankwasniak.ryanair.ui.toolbar.ToolbarTitleDecorator
 import com.damiankwasniak.setViewVisibility
+import com.damiankwasniak.showToast
 import com.nomtek.utils.gone
 import com.nomtek.utils.visible
 import kotlinx.android.synthetic.main.activity_search_result.*
@@ -99,7 +100,12 @@ class SearchResultActivity : BaseActivity(), SearchResultView {
         progressBar.gone()
     }
 
-    override fun showError(msg: Int) {
+    override fun showError(error: String) {
+        if(!error.isNotEmpty()) {
+            showToast(error)
+        } else {
+            showToast(getString(R.string.general_critical_error))
+        }
 
     }
 }

@@ -5,6 +5,7 @@ import com.damiankwasniak.ryanair.feature.searchresult.action.AvailableFlightsFe
 import com.damiankwasniak.ryanair.feature.searchresult.action.AvailableFlightsFetchingError
 import com.damiankwasniak.ryanair.feature.searchresult.action.FetchedAvailableFlights
 import com.damiankwasniak.ryanair.feature.searchresult.model.FlightViewModel
+import com.damiankwasniak.ryanair.feature.stations.reducer.StationsState
 import tw.geothings.rekotlin.Action
 
 data class AvailableFlightsState(
@@ -44,5 +45,9 @@ object AvailableFlightReducer {
 
     fun showProgress(state: AvailableFlightsState): Boolean {
         return state.isFetching
+    }
+
+    fun isError(state: AvailableFlightsState): Boolean {
+        return state.isError
     }
 }
